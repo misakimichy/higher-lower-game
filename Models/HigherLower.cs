@@ -2,7 +2,7 @@ using System;
 
 namespace HighLowGame.Models
 {
-  class HigherLower
+  class Game
   {
     private static int _number;
     private static int _min = 1;
@@ -10,33 +10,43 @@ namespace HighLowGame.Models
 
     public static int GetNumber()
     {
-      return _input;
+      return _number;
     }
 
-    public static void RandomNumber()
+    public static int GetMin()
+    {
+      return _min;
+    }
+
+    public static int GetMax()
+    {
+      return _max;
+    }
+
+    public static void initialGuess()
     {
       Random randomNum = new Random();
       _number = randomNum.Next(_min, _max);
     }
 
-    public static void higher(int randomNum)
+    public static void highGuess(int lowNum)
     {
       Random randomNum = new Random();
-      if(randomNum > _min)
+      if (lowNum > _min)
       {
-        _min = randomNum + 1;
+        _min = lowNum;
       }
       _number = randomNum.Next(_min, _max);
     }
 
-    public static void lower(int randomNum)
+    public static void lowGuess(int highNum)
     {
       Random randomNum = new Random();
-      if(randomNum < _max)
+      if(highNum < _max)
       {
-        _max = randomNum -1;
+        _max = highNum;
       }
-      -_number = randomNum.Next(_min, _max);
+      _number = randomNum.Next(_min, _max);
     }
   }
 }
